@@ -1,4 +1,4 @@
-# CNN Accelerator IP based on Eyeriss-Style Systolic Array
+# 2D Convolution Accelerator IP based on Eyeriss-Style Systolic Array
 
 ## 1. Overview
 
@@ -30,29 +30,6 @@ This project follows these principles using a **systolic array architecture**.
 
 ---
 
-## 3. Top-Level Architecture
-
-### 3.1 Block Diagram
-
-lua
-Sao chép mã
-           +----------------------+
-Activations ->| |
-Weights ->| top.v |--> Output Feature Map
-| Systolic PE Array |
-| Control Logic |
-+----------------------+
-
-yaml
-Sao chép mã
-
-The system consists of:
-- A 2D systolic array of Processing Elements
-- Control logic for data scheduling
-- Streaming input interfaces
-- Output accumulation logic
-
----
 
 ## 4. Processing Element (PE)
 
@@ -61,9 +38,6 @@ The system consists of:
 Each **Processing Element (PE)** performs a **Multiply–Accumulate (MAC)** operation:
 
 psum_out = psum_in + activation × weight
-
-yaml
-Sao chép mã
 
 PE responsibilities:
 - Multiply input activation with weight
@@ -115,8 +89,6 @@ For a 2D convolution operation:
 
 O(x,y) = Σ I(x+i, y+j) × W(i,j)
 
-yaml
-Sao chép mã
 
 ### 6.2 Mapping onto the Systolic Array
 
@@ -135,8 +107,6 @@ This mapping follows **Eyeriss-style spatial computation**.
 ├── pe_3x3.v # Processing Element (MAC unit)
 ├── README.md
 
-yaml
-Sao chép mã
 
 ### 7.1 `top.v`
 - Instantiates the PE systolic array
@@ -190,8 +160,3 @@ Possible extensions:
 2. H. T. Kung and C. E. Leiserson,  
    **Systolic Arrays for VLSI**, 1979
 
----
-
-## 12. License
-
-This project is intended for **academic and research use**.
